@@ -33,7 +33,7 @@ const ExpenseForm = (props) => {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Title</label>
+          <label>제목</label>
           <input
             type="text"
             value={enteredTitle}
@@ -41,7 +41,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label>Amount</label>
+          <label>금액</label>
           <input
             type="number"
             min="0.01"
@@ -51,7 +51,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label>Date</label>
+          <label>날짜</label>
           <input
             type="date"
             min="2019-01-01"
@@ -63,9 +63,9 @@ const ExpenseForm = (props) => {
       </div>
       <div className="new-expense__actions">
         <button type="button" onClick={props.onChangeEditingState}>
-          Cancel
+          취소
         </button>
-        <button type="submit">Add Expense</button>
+        <button type="submit">비용 추가하기</button>
       </div>
     </form>
   );
