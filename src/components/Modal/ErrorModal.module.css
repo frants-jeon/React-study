@@ -1,26 +1,3 @@
-/* .modal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 1;
-  margin: 0;
-  opacity: .7;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.modal .box {
-  height: 50rem;
-}
-
-.modal label,
-.modal p {
-  color: #000;
-} */
-
 .backdrop {
   position: fixed;
   top: 0;

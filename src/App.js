@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import InputBox from "./components/InputBox/InputBox";
 import UsersList from "./components/UsersList/UsersList";
-import Modal from "./components/Modal/Modal";
+import ErrorModal from "./components/Modal/ErrorModal";
 
 const App = () => {
   const [userInformations, setUserInformations] = useState([]);
@@ -16,11 +17,15 @@ const App = () => {
     setIsError(!isError);
   };
   return (
-    <div>
-      {isError && <Modal errorInfo={errorMessage} onClick={errorHandler} />}
+    <>
+      {isError &&
+        ReactDOM.createPortal(
+          <ErrorModal errorInfo={errorMessage} onClick={errorHandler} />,
+          document.getElementById("overlay-root")
+        )}
       <InputBox onAddUser={addUserHandler} onError={errorHandler} />
       <UsersList users={userInformations} />
-    </div>
+    </>
   );
 };
 

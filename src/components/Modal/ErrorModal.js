@@ -1,8 +1,8 @@
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import styles from "./Modal.module.css";
+import styles from "./ErrorModal.module.css";
 
-const Modal = (props) => {
+const ErrorModal = (props) => {
   const removeModalHandler = () => {
     props.onClick();
   };
@@ -24,4 +24,4 @@ const Modal = (props) => {
     </>
   );
 };
-export default Modal;
+export default ErrorModal;
