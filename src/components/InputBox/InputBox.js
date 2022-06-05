@@ -1,21 +1,16 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import styles from "./InputBox.module.css";
 
 const InputBox = (props) => {
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
-
-  const saveEnteredName = (event) => {
-    setEnteredName(event.target.value);
-  };
-  const saveEnteredAge = (event) => {
-    setEnteredAge(event.target.value);
-  };
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
 
   const submitHandler = () => {
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
     if (enteredName.trim().length === 0 || enteredAge.trim().length === 0) {
       props.onError({
         title: "Invalid input",
@@ -33,10 +28,10 @@ const InputBox = (props) => {
     props.onAddUser({
       id: Math.random().toString(),
       userName: enteredName,
-      age: Number(enteredAge),
+      age: +enteredAge,
     });
-    setEnteredName("");
-    setEnteredAge("");
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   };
   return (
     <Card className={styles.input}>
@@ -44,21 +39,11 @@ const InputBox = (props) => {
         <label htmlFor="username" className={styles.label}>
           Username
         </label>
-        <input
-          id="username"
-          type="text"
-          onChange={saveEnteredName}
-          value={enteredName}
-        ></input>
+        <input id="username" type="text" ref={nameInputRef}></input>
         <label htmlFor="age" className={styles.label}>
           Age (Years)
         </label>
-        <input
-          id="age"
-          type="number"
-          onChange={saveEnteredAge}
-          value={enteredAge}
-        ></input>
+        <input id="age" type="number" ref={ageInputRef}></input>
       </form>
       <Button type="button" onClick={submitHandler}>
         Add User
