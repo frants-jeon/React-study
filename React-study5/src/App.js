@@ -1,9 +1,17 @@
-function App() {
+import React from "react";
+
+import Header from "./components/Header/Header";
+import AvailableMeals from "./components/Meals/AvailableMeals";
+import MealsSummary from "./components/Summary/MealsSummary";
+
+const App = () => {
   return (
-    <div>
-      <h2>Let's get started!</h2>
-    </div>
+    <>
+      <Header />
+      <MealsSummary />
+      <AvailableMeals />
+    </>
   );
-}
+};
 
 export default App;
