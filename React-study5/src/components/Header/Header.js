@@ -1,20 +1,18 @@
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
+import mealsImage from "../../assets/meals.jpeg";
 
 const Header = (props) => {
   return (
-    <div>
-      <div className={classes.header}>
-        ReactMeals
+    <>
+      <header className={classes.header}>
+        <h1>ReactMeals</h1>
         <HeaderCartButton />
-      </div>
+      </header>
       <div className={classes["main-image"]}>
-        <img
-          src="https://raw.githubusercontent.com/academind/react-complete-guide-code/11-practice-food-order-app/extra-files/meals.jpg"
-          alt="meals"
-        />
+        <img src={mealsImage} alt="meals" />
       </div>
-    </div>
+    </>
   );
 };
 export default Header;

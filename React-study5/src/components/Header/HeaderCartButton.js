@@ -1,29 +1,36 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import classes from "./HeaderCartButton.module.css";
 import CartIcon from "../UI/Icon/CartIcon";
-import Modal from "../Modal/Modal";
 import CartContext from "../../store/cart-context";
 
-const HeaderCartButton = (props) => {
+const HeaderCartButton = () => {
   const cartCtx = useContext(CartContext);
-  const [activeModal, setActiveModal] = useState(false);
-  const modalActiveHandler = () => {
-    setActiveModal(!activeModal);
-  };
+  const [btnBump, setBtnBump] = useState(false);
+
+  const btnClasses = `${classes.button} ${btnBump && classes.bump}`;
+
+  useEffect(() => {
+    if (cartCtx.total.amount === 0) return;
+    setBtnBump(true);
+
+    const timer = setTimeout(() => {
+      setBtnBump(false);
+    }, 300);
+
+    // return () => {
+    //   clearTimeout(timer);
+    // };
+  }, [cartCtx.total.amount]);
 
   return (
-    <>
-      {activeModal && <Modal isActive={modalActiveHandler} />}
-      <button
-        className={`${classes.button} ${classes.bump}`}
-        onClick={modalActiveHandler}
-      >
+    <button className={btnClasses} onClick={cartCtx.cartOnOffHandler}>
+      <span className={classes.icon}>
         <CartIcon />
-        Your Cart
-        <div className={classes.badge}>{cartCtx.total.amount}</div>
-      </button>
-    </>
+      </span>
+      <span>Your Cart</span>
+      <span className={classes.badge}>{cartCtx.total.amount}</span>
+    </button>
   );
 };
 export default HeaderCartButton;
