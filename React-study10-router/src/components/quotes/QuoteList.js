@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
-import QuoteItem from './QuoteItem';
-import classes from './QuoteList.module.css';
+import QuoteItem from "./QuoteItem";
+import classes from "./QuoteList.module.css";
 
 const QuoteList = (props) => {
   return (
@@ -13,6 +13,7 @@ const QuoteList = (props) => {
             id={quote.id}
             author={quote.author}
             text={quote.text}
+            onSelectQuote={props.onSelectQuote}
           />
         ))}
       </ul>
